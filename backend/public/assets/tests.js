@@ -111,6 +111,34 @@ define('frontend/tests/helpers/start-app.jshint', ['exports'], function (exports
     assert.ok(true, 'helpers/start-app.js should pass jshint.');
   });
 });
+define('frontend/tests/integration/books-index-test', ['exports', 'ember', 'qunit', 'frontend/tests/helpers/start-app'], function (exports, _ember, _qunit, _frontendTestsHelpersStartApp) {
+
+  var App;
+
+  (0, _qunit.module)('Books Index', {
+    beforeEach: function beforeEach() {
+      App = (0, _frontendTestsHelpersStartApp['default'])();
+    },
+    afterEach: function afterEach() {
+      _ember['default'].run(App, 'destroy');
+    }
+  });
+
+  (0, _qunit.test)('should show me a list of available books', function (assert) {
+    visit('/books').then(function () {
+      assert.equal(find('h1').text(), 'Favorite Books!');
+    });
+  });
+});
+define('frontend/tests/integration/books-index-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - integration');
+  QUnit.test('integration/books-index-test.js should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/books-index-test.js should pass jshint.');
+  });
+});
 define('frontend/tests/models/book.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -138,13 +166,22 @@ define('frontend/tests/router.jshint', ['exports'], function (exports) {
     assert.ok(true, 'router.js should pass jshint.');
   });
 });
+define('frontend/tests/routes/book.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes');
+  QUnit.test('routes/book.js should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'routes/book.js should pass jshint.\nroutes/book.js: line 1, col 16, \'Ember\' is not defined.\n\n1 error');
+  });
+});
 define('frontend/tests/routes/books.jshint', ['exports'], function (exports) {
   'use strict';
 
   QUnit.module('JSHint - routes');
   QUnit.test('routes/books.js should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'routes/books.js should pass jshint.\nroutes/books.js: line 3, col 5, Forgotten \'debugger\' statement?\nroutes/books.js: line 1, col 16, \'Ember\' is not defined.\n\n2 errors');
+    assert.ok(false, 'routes/books.js should pass jshint.\nroutes/books.js: line 1, col 16, \'Ember\' is not defined.\n\n1 error');
   });
 });
 define('frontend/tests/test-helper', ['exports', 'frontend/tests/helpers/resolver', 'ember-qunit'], function (exports, _frontendTestsHelpersResolver, _emberQunit) {

@@ -30,6 +30,10 @@ RSpec.configure do |config|
     Book.destroy_all
     Review.destroy_all
   end
+
+  config.before(:suite) do
+    system("cd ../frontend && ember build --output-path ../backend/public")
+  end
 end
 
 Capybara.app = Sinatra::Application

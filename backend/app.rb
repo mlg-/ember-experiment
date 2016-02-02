@@ -64,7 +64,7 @@ class App < Sinatra::Base
   end
 
   get "/api/v1/books" do
-    json({ books: Book.all })
+    json({ books: Book.all.sort_by(title: :asc) })
   end
 
   post "/api/v1/books/new" do
