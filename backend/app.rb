@@ -54,7 +54,7 @@ class App < Sinatra::Base
   end
 
   #API endpoints
-  get "/api/v1/book/:id" do
+  get "/api/v1/books/:id" do
     content_type :json
     @book = Book.find(params[:id].to_i)
     {
