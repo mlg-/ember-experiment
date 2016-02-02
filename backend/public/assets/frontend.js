@@ -322,7 +322,7 @@ define("frontend/templates/book", ["exports"], function (exports) {
             },
             "end": {
               "line": 1,
-              "column": 31
+              "column": 33
             }
           },
           "moduleName": "frontend/templates/book.hbs"
@@ -333,7 +333,7 @@ define("frontend/templates/book", ["exports"], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("← All Books");
+          var el1 = dom.createTextNode("Back to Index");
           dom.appendChild(el0, el1);
           return el0;
         },
@@ -416,7 +416,7 @@ define("frontend/templates/book", ["exports"], function (exports) {
         dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["block", "link-to", ["books"], [], 0, null, ["loc", [null, [1, 0], [1, 43]]]], ["content", "model.title", ["loc", [null, [3, 5], [3, 22]]]], ["content", "model.author", ["loc", [null, [4, 5], [4, 21]]]], ["content", "model.description", ["loc", [null, [6, 4], [6, 25]]]]],
+      statements: [["block", "link-to", ["books"], [], 0, null, ["loc", [null, [1, 0], [1, 45]]]], ["content", "model.title", ["loc", [null, [3, 5], [3, 22]]]], ["content", "model.author", ["loc", [null, [4, 5], [4, 21]]]], ["content", "model.description", ["loc", [null, [6, 4], [6, 25]]]]],
       locals: [],
       templates: [child0]
     };
