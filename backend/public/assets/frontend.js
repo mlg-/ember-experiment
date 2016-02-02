@@ -5,7 +5,8 @@
 
 define('frontend/adapters/application', ['exports', 'ember-data'], function (exports, _emberData) {
   exports['default'] = _emberData['default'].RESTAdapter.extend({
-    namespace: 'api/v1'
+    namespace: 'api/v1',
+    primaryKey: 'id'
   });
 });
 define('frontend/app', ['exports', 'ember', 'frontend/resolver', 'ember/load-initializers', 'frontend/config/environment'], function (exports, _ember, _frontendResolver, _emberLoadInitializers, _frontendConfigEnvironment) {
@@ -224,14 +225,21 @@ define('frontend/router', ['exports', 'ember', 'frontend/config/environment'], f
 
   Router.map(function () {
     this.route('books', { path: '/books' });
+    this.route('book', { path: 'book/:book_id' });
   });
 
   exports['default'] = Router;
 });
+define('frontend/routes/book', ['exports'], function (exports) {
+  exports['default'] = Ember.Route.extend({
+    model: function model(params) {
+      return this.store.findRecord('book', params.book_id);
+    }
+  });
+});
 define('frontend/routes/books', ['exports'], function (exports) {
   exports['default'] = Ember.Route.extend({
     model: function model() {
-      debugger;
       return this.store.findAll('book');
     }
   });
@@ -274,7 +282,7 @@ define("frontend/templates/application", ["exports"], function (exports) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("h2");
         dom.setAttribute(el1, "id", "title");
-        var el2 = dom.createTextNode("Welcome to Ember");
+        var el2 = dom.createTextNode("OMG EMBER");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
@@ -296,9 +304,167 @@ define("frontend/templates/application", ["exports"], function (exports) {
     };
   })());
 });
+define("frontend/templates/book", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      return {
+        meta: {
+          "fragmentReason": {
+            "name": "missing-wrapper",
+            "problems": ["wrong-type"]
+          },
+          "revision": "Ember@2.3.0",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 33
+            }
+          },
+          "moduleName": "frontend/templates/book.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("Back to Index");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() {
+          return [];
+        },
+        statements: [],
+        locals: [],
+        templates: []
+      };
+    })();
+    return {
+      meta: {
+        "fragmentReason": {
+          "name": "missing-wrapper",
+          "problems": ["wrong-type", "multiple-nodes"]
+        },
+        "revision": "Ember@2.3.0",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 0
+          }
+        },
+        "moduleName": "frontend/templates/book.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("h1");
+        var el2 = dom.createTextNode(" ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode(" ");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("h2");
+        var el2 = dom.createTextNode(" ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode(" ");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("p");
+        var el2 = dom.createTextNode(" ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode(" ");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(4);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]), 1, 1);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [4]), 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [6]), 1, 1);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["block", "link-to", ["books"], [], 0, null, ["loc", [null, [1, 0], [1, 45]]]], ["content", "model.title", ["loc", [null, [3, 5], [3, 22]]]], ["content", "model.author", ["loc", [null, [4, 5], [4, 21]]]], ["content", "model.description", ["loc", [null, [6, 4], [6, 25]]]]],
+      locals: [],
+      templates: [child0]
+    };
+  })());
+});
 define("frontend/templates/books", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "fragmentReason": false,
+            "revision": "Ember@2.3.0",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 4,
+                "column": 8
+              },
+              "end": {
+                "line": 4,
+                "column": 46
+              }
+            },
+            "moduleName": "frontend/templates/books.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createComment("");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+            var morphs = new Array(1);
+            morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+            dom.insertBoundary(fragment, 0);
+            dom.insertBoundary(fragment, null);
+            return morphs;
+          },
+          statements: [["content", "book.title", ["loc", [null, [4, 32], [4, 46]]]]],
+          locals: [],
+          templates: []
+        };
+      })();
       return {
         meta: {
           "fragmentReason": false,
@@ -337,9 +503,9 @@ define("frontend/templates/books", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
           return morphs;
         },
-        statements: [["content", "book.book.title", ["loc", [null, [4, 8], [4, 27]]]]],
-        locals: ["title"],
-        templates: []
+        statements: [["block", "link-to", ["book", ["get", "book", ["loc", [null, [4, 26], [4, 30]]]]], [], 0, null, ["loc", [null, [4, 8], [4, 58]]]]],
+        locals: ["book"],
+        templates: [child0]
       };
     })();
     return {

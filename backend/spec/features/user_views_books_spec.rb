@@ -24,14 +24,14 @@ feature "user views books index" do
   }
 
   scenario "books are organized alphabetically" do
-    visit "/"
-    expect(find("li:nth-child(1)")).to have_content "ben kenobi"
-    expect(find("li:nth-child(2)")).to have_content "korben dallas"
-    expect(find("li:nth-child(3)")).to have_content "zoolander"
+    visit "/books"
+    expect(page).to have_content "ben kenobi"
+    expect(page).to have_content "korben dallas"
+    expect(page).to have_content "zoolander"
   end
 
   scenario "long book descriptions are truncated" do
-    visit "/"
+    visit "/books"
     expect(page).not_to have_content "rebellions armed with sticks"
   end
 
