@@ -4,6 +4,7 @@ gem "sinatra"
 gem "pg"
 gem "activerecord"
 gem "sinatra-activerecord"
+gem "sinatra-contrib"
 gem "dotenv"
 
 group :test, :development do
@@ -15,4 +16,7 @@ group :test do
   gem "capybara"
   gem "shoulda-matchers"
   gem "launchy"
+  gem "factory_girl"
+  gem "poltergeist"
+  gem "rspec"
 end
