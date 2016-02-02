@@ -17,13 +17,7 @@ class App < Sinatra::Base
   Dir["./app/models/*.rb"].each { |file| require file }
   Dir["./app/seeders/*.rb"].each { |file| require file }
 
-  set :views, Proc.new { File.join(root, "app/views") }
-
   #HTTP Views
-  get "/" do
-    @books = Book.order(:title)
-    erb :index
-  end
 
   get "/book/:id" do
     @book = Book.find(params[:id].to_i)
@@ -64,7 +58,7 @@ class App < Sinatra::Base
   end
 
   get "/api/v1/books" do
-    json({ books: Book.all.sort_by(title: :asc) })
+    json({ books: Book.all.order(title: :asc) })
   end
 
   post "/api/v1/books/new" do
