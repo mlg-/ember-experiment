@@ -48,7 +48,7 @@ class App < Sinatra::Base
     json({ books: books })
   end
 
-  post "/api/v1/books/new" do
+  post "/api/v1/books" do
     book = Book.create(
       title: params[:title],
       author: params[:author],
