@@ -9,12 +9,12 @@ require "sinatra/json"
 require "sinatra/activerecord"
 require "pry"
 
-Dir["./app/models/*.rb"].each { |file| require file }
-Dir["./app/seeders/*.rb"].each { |file| require file }
-
 class App < Sinatra::Base
   register Sinatra::JSON
   register Sinatra::Namespace
+
+  Dir["./app/models/*.rb"].each { |file| require file }
+  Dir["./app/seeders/*.rb"].each { |file| require file }
 
   get '/books' do
     index = File.join(settings.public_folder, 'index.html')
@@ -32,7 +32,20 @@ class App < Sinatra::Base
   end
 
   get "/api/v1/books" do
-    json({ books: Book.all.order(title: :asc) })
+    content_type :json
+    @books = Book.order(:title)
+    books = []
+    @books.each do |book|
+      books << {
+        id: book.id,
+        title: book.title,
+        author: book.author,
+        description: book.description,
+        score: book.average_review_score,
+        reviews: book.reviews
+      }
+    end
+    json({ books: books })
   end
 
   post "/api/v1/books/new" do

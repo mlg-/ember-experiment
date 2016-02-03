@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 
 gem "sinatra", "~> 1.4"
+gem "activerecord"
+gem "sinatra-contrib"
+gem "sinatra-activerecord", "~> 2.0"
 gem "rake"
 gem "pg"
-gem "activerecord"
-gem "sinatra-activerecord", "~> 2.0"
-gem "sinatra-contrib"
 gem "dotenv"
 
 group :test, :development do

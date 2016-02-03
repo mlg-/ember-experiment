@@ -111,6 +111,15 @@ define('frontend/tests/helpers/start-app.jshint', ['exports'], function (exports
     assert.ok(true, 'helpers/start-app.js should pass jshint.');
   });
 });
+define('frontend/tests/helpers/truncate-description.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - helpers');
+  QUnit.test('helpers/truncate-description.js should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'helpers/truncate-description.js should pass jshint.');
+  });
+});
 define('frontend/tests/integration/books-index-test', ['exports', 'ember', 'qunit', 'frontend/tests/helpers/start-app'], function (exports, _ember, _qunit, _frontendTestsHelpersStartApp) {
 
   var App;
@@ -195,6 +204,25 @@ define('frontend/tests/test-helper.jshint', ['exports'], function (exports) {
   QUnit.test('test-helper.js should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'test-helper.js should pass jshint.');
+  });
+});
+define('frontend/tests/unit/helpers/truncate-description-test', ['exports', 'frontend/helpers/truncate-description', 'qunit'], function (exports, _frontendHelpersTruncateDescription, _qunit) {
+
+  (0, _qunit.module)('Unit | Helper | truncate description');
+
+  // Replace this with your real tests.
+  (0, _qunit.test)('it works', function (assert) {
+    var result = (0, _frontendHelpersTruncateDescription.truncateDescription)([42]);
+    assert.ok(result);
+  });
+});
+define('frontend/tests/unit/helpers/truncate-description-test.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - unit/helpers');
+  QUnit.test('unit/helpers/truncate-description-test.js should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/helpers/truncate-description-test.js should pass jshint.');
   });
 });
 /* jshint ignore:start */
