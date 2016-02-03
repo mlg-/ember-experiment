@@ -1,6 +1,6 @@
 <h1>Favorite Books!</h1>
 <ul>
   {{#each model as |book|}}
-    <li>{{#link-to "book" book}}{{book.title}}{{/link-to}}</li>
+    <li>{{#link-to "book" book}}{{book.title}}{{/link-to}}, {{book.author}}: {{truncate-description book.description}}</li>
   {{/each}}
 </ul>

@@ -47,6 +47,22 @@ define('frontend/helpers/pluralize', ['exports', 'ember-inflector/lib/helpers/pl
 define('frontend/helpers/singularize', ['exports', 'ember-inflector/lib/helpers/singularize'], function (exports, _emberInflectorLibHelpersSingularize) {
   exports['default'] = _emberInflectorLibHelpersSingularize['default'];
 });
+define('frontend/helpers/truncate-description', ['exports', 'ember'], function (exports, _ember) {
+  exports.truncateDescription = truncateDescription;
+
+  function truncateDescription(params) {
+    var fullDescription = params[0];
+
+    if (fullDescription.length > 100) {
+      var shortDescription = fullDescription.substring(0, 100);
+      return shortDescription;
+    } else {
+      return fullDescription;
+    }
+  }
+
+  exports['default'] = _ember['default'].Helper.helper(truncateDescription);
+});
 define('frontend/initializers/app-version', ['exports', 'ember-cli-app-version/initializer-factory', 'frontend/config/environment'], function (exports, _emberCliAppVersionInitializerFactory, _frontendConfigEnvironment) {
   exports['default'] = {
     name: 'App Version',
@@ -493,17 +509,28 @@ define("frontend/templates/books", ["exports"], function (exports) {
           var el1 = dom.createElement("li");
           var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode(", ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode(": ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
           dom.appendChild(el0, el1);
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+          var element0 = dom.childAt(fragment, [1]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(element0, 0, 0);
+          morphs[1] = dom.createMorphAt(element0, 2, 2);
+          morphs[2] = dom.createMorphAt(element0, 4, 4);
           return morphs;
         },
-        statements: [["block", "link-to", ["book", ["get", "book", ["loc", [null, [4, 26], [4, 30]]]]], [], 0, null, ["loc", [null, [4, 8], [4, 58]]]]],
+        statements: [["block", "link-to", ["book", ["get", "book", ["loc", [null, [4, 26], [4, 30]]]]], [], 0, null, ["loc", [null, [4, 8], [4, 58]]]], ["content", "book.author", ["loc", [null, [4, 60], [4, 75]]]], ["inline", "truncate-description", [["get", "book.description", ["loc", [null, [4, 100], [4, 116]]]]], [], ["loc", [null, [4, 77], [4, 118]]]]],
         locals: ["book"],
         templates: [child0]
       };
