@@ -225,7 +225,8 @@ define('frontend/models/book', ['exports', 'ember-data'], function (exports, _em
   var Book = _emberData['default'].Model.extend({
     title: _emberData['default'].attr('string'),
     author: _emberData['default'].attr('string'),
-    description: _emberData['default'].attr('string')
+    description: _emberData['default'].attr('string'),
+    score: _emberData['default'].attr('string')
   });
 
   exports['default'] = Book;
@@ -517,6 +518,10 @@ define("frontend/templates/books", ["exports"], function (exports) {
           dom.appendChild(el1, el2);
           var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode(" || ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
           dom.appendChild(el0, el1);
@@ -524,13 +529,14 @@ define("frontend/templates/books", ["exports"], function (exports) {
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
           var element0 = dom.childAt(fragment, [1]);
-          var morphs = new Array(3);
+          var morphs = new Array(4);
           morphs[0] = dom.createMorphAt(element0, 0, 0);
           morphs[1] = dom.createMorphAt(element0, 2, 2);
           morphs[2] = dom.createMorphAt(element0, 4, 4);
+          morphs[3] = dom.createMorphAt(element0, 6, 6);
           return morphs;
         },
-        statements: [["block", "link-to", ["book", ["get", "book", ["loc", [null, [4, 26], [4, 30]]]]], [], 0, null, ["loc", [null, [4, 8], [4, 58]]]], ["content", "book.author", ["loc", [null, [4, 60], [4, 75]]]], ["inline", "truncate-description", [["get", "book.description", ["loc", [null, [4, 100], [4, 116]]]]], [], ["loc", [null, [4, 77], [4, 118]]]]],
+        statements: [["block", "link-to", ["book", ["get", "book", ["loc", [null, [4, 26], [4, 30]]]]], [], 0, null, ["loc", [null, [4, 8], [4, 58]]]], ["content", "book.author", ["loc", [null, [4, 60], [4, 75]]]], ["inline", "truncate-description", [["get", "book.description", ["loc", [null, [4, 100], [4, 116]]]]], [], ["loc", [null, [4, 77], [4, 118]]]], ["content", "book.score", ["loc", [null, [4, 122], [4, 136]]]]],
         locals: ["book"],
         templates: [child0]
       };

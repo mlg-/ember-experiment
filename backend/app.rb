@@ -16,7 +16,7 @@ class App < Sinatra::Base
   Dir["./app/models/*.rb"].each { |file| require file }
   Dir["./app/seeders/*.rb"].each { |file| require file }
 
-  get '/' do
+  get '/books' do
     index = File.join(settings.public_folder, 'index.html')
     send_file(index)
   end
@@ -32,8 +32,20 @@ class App < Sinatra::Base
   end
 
   get "/api/v1/books" do
-    @books = Book.all.order(title: :asc)
-    json({books: @books})
+    content_type :json
+    @books = Book.order(:title)
+    books = []
+    @books.each do |book|
+      books << {
+        id: book.id,
+        title: book.title,
+        author: book.author,
+        description: book.description,
+        score: book.average_review_score,
+        reviews: book.reviews
+      }
+    end
+    json({ books: books })
   end
 
   post "/api/v1/books/new" do

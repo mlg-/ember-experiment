@@ -25,6 +25,7 @@ feature "user views books index", js: true do
 
   scenario "books are organized alphabetically" do
     visit "/books"
+
     expect(find("li:nth-child(1)")).to have_content "ben's bountiful bosons"
     expect(find("li:nth-child(2)")).to have_content "korben's compendium of galactic conundrums"
     expect(find("li:nth-child(3)")).to have_content "zoolander's guide to zoology"
@@ -40,7 +41,7 @@ feature "user views books index", js: true do
     Review.create(book: book1, score: 10, description: "a good book")
     Review.create(book: book1, score: 1, description: "a good book")
 
-    visit "/"
+    visit "/books"
 
     expect(page).to have_content "Average Rating: 5.0"
     expect(page).to have_content "No Ratings"
