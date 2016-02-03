@@ -2,19 +2,17 @@ require "spec_helper"
 
 feature "user adds a book" do
   scenario "user adds a book" do
-    visit "/"
-    expect(page).not_to have_content "Book Title"
+    Book.create(title: "The Dead and the Living", author: "Sharon Olds", description: "Poetry about family life")
+    visit "/books"
 
     click_on "Add A Book"
-    expect(page).to have_content "Add A Book"
-    click_on "Back to Index"
-    expect(page).to have_content "Books"
-    click_on "Add A Book"
 
-    fill_in :book_title, with: "Book Title"
-    fill_in :book_author, with: "Book Author"
-    fill_in :book_description, with: "This is the description for a book that is interesting"
+    fill_in :book_title, with: "Native Son"
+    fill_in :book_author, with: "Richard Wright"
+    fill_in :book_description, with: "1940 novel, Bigger Thomas"
     click_on "Add"
-    expect(page).to have_content "Book Title"
+
+    expect(page).to have_content "Native Son"
+    expect(page).to have_content "The Dead and the Living"
   end
 end
