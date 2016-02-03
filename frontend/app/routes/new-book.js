@@ -15,7 +15,7 @@ export default Ember.Route.extend({
                                             title: title,
                                             author: author,
                                             description: description});
-      book.save();
+      // book.save();
       this.get('controller').set('title', '');
       this.get('controller').set('author', '');
       this.get('controller').set('description', '');

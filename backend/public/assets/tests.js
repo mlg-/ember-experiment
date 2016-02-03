@@ -7,6 +7,15 @@ define('frontend/tests/adapters/application.jshint', ['exports'], function (expo
     assert.ok(true, 'adapters/application.js should pass jshint.');
   });
 });
+define('frontend/tests/adapters/new-book.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - adapters');
+  QUnit.test('adapters/new-book.js should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'adapters/new-book.js should pass jshint.');
+  });
+});
 define('frontend/tests/app.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -157,6 +166,15 @@ define('frontend/tests/models/book.jshint', ['exports'], function (exports) {
     assert.ok(true, 'models/book.js should pass jshint.');
   });
 });
+define('frontend/tests/models/new-book.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - models');
+  QUnit.test('models/new-book.js should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'models/new-book.js should pass jshint.');
+  });
+});
 define('frontend/tests/resolver.jshint', ['exports'], function (exports) {
   'use strict';
 
@@ -191,6 +209,15 @@ define('frontend/tests/routes/books.jshint', ['exports'], function (exports) {
   QUnit.test('routes/books.js should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(false, 'routes/books.js should pass jshint.\nroutes/books.js: line 1, col 16, \'Ember\' is not defined.\n\n1 error');
+  });
+});
+define('frontend/tests/routes/new-book.jshint', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint - routes');
+  QUnit.test('routes/new-book.js should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'routes/new-book.js should pass jshint.\nroutes/new-book.js: line 14, col 11, \'book\' is defined but never used.\nroutes/new-book.js: line 4, col 16, \'Ember\' is not defined.\nroutes/new-book.js: line 1, col 8, \'DS\' is defined but never used.\nroutes/new-book.js: line 2, col 8, \'Book\' is defined but never used.\n\n4 errors');
   });
 });
 define('frontend/tests/test-helper', ['exports', 'frontend/tests/helpers/resolver', 'ember-qunit'], function (exports, _frontendTestsHelpersResolver, _emberQunit) {
